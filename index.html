@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nagaraja — Still Asking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Literata:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12151B;
+    --bg-alt: #171B23;
+    --surface: #1D222C;
+    --paper: #EDE7DA;
+    --paper-dim: #B8B2A3;
+    --accent: #C99A5B;
+    --accent-2: #5C8374;
+    --muted: #78808F;
+    --line: rgba(237,231,218,0.09);
+    --maxw: 720px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'Literata', serif;
+    font-size:17px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+  }
+
+  a{ color:inherit; }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; }
+
+  ::selection{ background:var(--accent); color:var(--bg); }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  /* ---------- layout shell ---------- */
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+    position:relative;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 32px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    mix-blend-mode:difference;
+  }
+  nav .mark{ color:var(--paper); font-weight:500; }
+  nav ul{ list-style:none; display:flex; gap:26px; }
+  nav a{ text-decoration:none; color:var(--paper-dim); transition:color .2s; }
+  nav a:hover{ color:var(--paper); }
+  @media (max-width:640px){
+    nav ul{ display:none; }
+  }
+
+  /* ---------- road progress spine (desktop) ---------- */
+  #road{
+    position:fixed;
+    left:18px;
+    top:0;
+    bottom:0;
+    width:40px;
+    z-index:40;
+    pointer-events:none;
+    display:block;
+  }
+  #road svg{ height:100%; width:100%; }
+  #road .track{
+    stroke:var(--line);
+    stroke-width:1.5;
+    fill:none;
+  }
+  #road .fill{
+    stroke:var(--accent);
+    stroke-width:1.5;
+    fill:none;
+    stroke-dasharray:2400;
+    stroke-dashoffset:2400;
+    transition:stroke-dashoffset .08s linear;
+  }
+  #road .dot{
+    fill:var(--accent);
+    filter:drop-shadow(0 0 6px rgba(201,154,91,0.7));
+  }
+  @media (max-width:900px){
+    #road{ display:none; }
+  }
+
+  /* ---------- mobile top progress bar ---------- */
+  #topbar{
+    position:fixed; top:0; left:0; height:2px;
+    background:var(--accent);
+    width:0%;
+    z-index:60;
+    display:none;
+  }
+  @media (max-width:900px){
+    #topbar{ display:block; }
+  }
+
+  main{ position:relative; z-index:1; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:120px 0 80px;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px; height:1px;
+    background:var(--accent);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 6vw, 3.6rem);
+    line-height:1.12;
+    color:var(--paper);
+    max-width:11ch;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--accent);
+  }
+  .hero .sub{
+    margin-top:28px;
+    max-width:46ch;
+    color:var(--paper-dim);
+    font-size:1.08rem;
+  }
+  .hero .who{
+    margin-top:44px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--muted);
+    letter-spacing:0.03em;
+  }
+  .scroll-cue{
+    margin-top:60px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .scroll-cue .stem{
+    width:1px; height:26px;
+    background:linear-gradient(var(--muted), transparent);
+    animation:stem 2.2s ease-in-out infinite;
+  }
+  @keyframes stem{
+    0%,100%{ transform:scaleY(1); opacity:.6; }
+    50%{ transform:scaleY(1.3); opacity:1; }
+  }
+
+  /* ---------- sections ---------- */
+  section{
+    padding:110px 0;
+    border-top:1px solid var(--line);
+  }
+  section:first-of-type{ border-top:none; }
+
+  .waypoint{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    margin-bottom:18px;
+  }
+  section h2{
+    font-size:clamp(1.5rem, 3.4vw, 2.1rem);
+    color:var(--paper);
+    max-width:16ch;
+    margin-bottom:34px;
+  }
+  section p{
+    max-width:60ch;
+    color:var(--paper-dim);
+    margin-bottom:20px;
+  }
+  section p strong{ color:var(--paper); font-weight:600; }
+  section p a{ color:var(--accent); text-decoration:underline; text-decoration-color:rgba(201,154,91,0.4); text-underline-offset:3px; }
+  section p a:hover{ text-decoration-color:var(--accent); }
+
+  .pull{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.4rem, 3.2vw, 2rem);
+    color:var(--paper);
+    max-width:20ch;
+    line-height:1.35;
+    margin:36px 0;
+    padding-left:24px;
+    border-left:2px solid var(--accent);
+  }
+
+  /* traits grid */
+  .traits{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px 40px;
+    margin-top:44px;
+  }
+  @media (max-width:640px){ .traits{ grid-template-columns:1fr; } }
+  .trait h3{
+    font-size:1.02rem;
+    color:var(--paper);
+    margin-bottom:8px;
+    font-weight:600;
+  }
+  .trait p{
+    font-size:0.96rem;
+    margin-bottom:0;
+  }
+
+  /* writing list */
+  .posts{
+    margin-top:10px;
+    border-top:1px solid var(--line);
+  }
+  .post{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:20px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+    text-decoration:none;
+    transition:padding-left .25s ease, color .25s ease;
+  }
+  .post:hover{ padding-left:10px; }
+  .post .t{
+    font-family:'Fraunces', serif;
+    font-size:1.1rem;
+    color:var(--paper);
+    font-weight:500;
+  }
+  .post:hover .t{ color:var(--accent); }
+  .post .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    white-space:nowrap;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+  }
+  .elsewhere{
+    margin-top:36px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px 26px;
+  }
+  .elsewhere a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--paper-dim);
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+    padding-bottom:3px;
+    transition:color .2s, border-color .2s;
+  }
+  .elsewhere a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  /* now section */
+  .now-list{ margin-top:6px; }
+  .now-item{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    gap:22px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .now-item:first-child{ border-top:1px solid var(--line); }
+  .now-item .status{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--accent-2);
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    padding-top:2px;
+  }
+  .now-item .desc{ color:var(--paper-dim); font-size:0.98rem; max-width:52ch; }
+  .now-item .desc strong{ color:var(--paper); }
+  @media (max-width:560px){
+    .now-item{ grid-template-columns:1fr; gap:6px; }
+  }
+
+  /* contact */
+  .contact-card{
+    margin-top:40px;
+    padding:36px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:2px;
+  }
+  .contact-card p{ margin-bottom:24px; }
+  .mail-link{
+    font-family:'Fraunces', serif;
+    font-size:clamp(1.2rem, 3vw, 1.6rem);
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid rgba(201,154,91,0.4);
+    padding-bottom:4px;
+    display:inline-block;
+  }
+  .mail-link:hover{ border-color:var(--accent); }
+
+  footer{
+    padding:48px 0 60px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<div id="topbar"></div>
+
+<nav>
+  <span class="mark">NAGARAJA</span>
+  <ul>
+    <li><a href="#road-so-far">the road so far</a></li>
+    <li><a href="#writing">notes from the walk</a></li>
+    <li><a href="#now">where I am now</a></li>
+    <li><a href="#find-me">find me</a></li>
+  </ul>
+</nav>
+
+<div id="road">
+  <svg viewBox="0 0 40 1000" preserveAspectRatio="none">
+    <path class="track" d="M20,0 C6,120 34,240 20,360 C6,480 34,600 20,720 C6,840 34,920 20,1000" />
+    <path class="fill" id="roadFill" d="M20,0 C6,120 34,240 20,360 C6,480 34,600 20,720 C6,840 34,920 20,1000" />
+    <circle class="dot" id="roadDot" cx="20" cy="0" r="3.4" />
+  </svg>
+</div>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="eyebrow">Seydunganallur, Thoothukudi · Tamil Nadu</div>
+    <h1>Someone is fixing <em>the roads.</em><br>I just walk on it.</h1>
+    <p class="sub">I'm Nagaraja — a systems thinker, writer, and gap-year engineer-in-waiting. I ask root questions before I look for fixes, and I write down what the walk teaches me.</p>
+    <div class="who">Writer of "Who Am I — I Am Still Asking" · Reader of cosmology, psychology, philosophy, history</div>
+    <div class="scroll-cue"><span class="stem"></span>keep walking</div>
+  </section>
+
+  <section id="road-so-far">
+    <div class="waypoint">waypoint 01 — the road so far</div>
+    <h2>I build my own worldview, one root question at a time.</h2>
+    <p>I didn't inherit the way I think from a teacher, a book, or a community. I built it — through lived experience, through sitting with hard questions instead of settling for the first answer. I'm an atheist because I reasoned my way there, not because of any conflict with how I was raised.</p>
+    <p>I'm an only child. My father is physically handicapped and has been the greatest influence on how I think about effort and dignity — a man who, in my words, <strong>earns people, not money</strong>. That's shaped how seriously I take responsibility, and how early I started thinking about the shape of my own future.</p>
+    <div class="pull">"My life is my book — I'm the author and the character, both."</div>
+    <div class="traits">
+      <div class="trait">
+        <h3>Systems, not symptoms</h3>
+        <p>I look for the structure under a problem — incentives, feedback loops, root causes — rather than reacting to whatever happened most recently.</p>
+      </div>
+      <div class="trait">
+        <h3>Slow, on purpose</h3>
+        <p>I don't rush complex questions. Sitting with an idea longer isn't indecision — it's giving the idea the seriousness it's owed.</p>
+      </div>
+      <div class="trait">
+        <h3>Root-question orientation</h3>
+        <p>My instinct is "why is this actually happening," not "how do I patch this." It's why cosmology and psychology pull at me as hard as anything practical does.</p>
+      </div>
+      <div class="trait">
+        <h3>Documented, not dramatized</h3>
+        <p>When something gets hard, I tend to turn it into a structured record I can act on calmly, rather than carry it around as noise.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="writing">
+    <div class="waypoint">waypoint 02 — notes from the walk</div>
+    <h2>I write to figure out what I actually think.</h2>
+    <p>Everything goes through <em>Who Am I — I Am Still Asking</em>, my blog on Medium and Blogger. The writing is deliberately unpolished — raw, compressed, honest, closer to thought-in-motion than a finished essay.</p>
+
+    <div class="posts">
+      <a class="post" href="#" target="_blank" rel="noopener">
+        <span class="t">He Earned People</span>
+        <span class="tag">on my father</span>
+      </a>
+      <a class="post" href="#" target="_blank" rel="noopener">
+        <span class="t">Who Controls the Story, Controls the People</span>
+        <span class="tag">on narrative power</span>
+      </a>
+      <a class="post" href="#" target="_blank" rel="noopener">
+        <span class="t">The 1% Who Move the World</span>
+        <span class="tag">on history</span>
+      </a>
+      <a class="post" href="#" target="_blank" rel="noopener">
+        <span class="t">Who Am I — I Am Still Asking</span>
+        <span class="tag">on identity</span>
+      </a>
+    </div>
+
+    <p style="margin-top:28px;">I also applied to speak at Medium Day 2026 — a talk on rejection, identity, and what survives both.</p>
+
+    <div class="elsewhere">
+      <a href="#" target="_blank" rel="noopener">Blog →</a>
+      <a href="#" target="_blank" rel="noopener">Reddit — r/freewill →</a>
+      <a href="#" target="_blank" rel="noopener">X →</a>
+      <a href="#" target="_blank" rel="noopener">Threads →</a>
+      <a href="#" target="_blank" rel="noopener">Quora →</a>
+    </div>
+  </section>
+
+  <section id="now">
+    <div class="waypoint">waypoint 03 — where I am now</div>
+    <h2>Gap year. Building toward CSE, deliberately.</h2>
+    <p>I finished 12th grade and I'm now in a gap year, working through TNEA 2026 counseling toward a B.E. in Computer Science or IT. The plan was once B.E. → a Master's abroad on a fixed timeline; family circumstances have made me redraw that into something more patient, without giving up the underlying direction.</p>
+
+    <div class="now-list">
+      <div class="now-item">
+        <div class="status">Studying</div>
+        <div class="desc"><strong>TNEA 2026 counseling</strong> — mapping cutoffs district by district to find the strongest CSE / IT / AI&ML fit for my rank.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Redirecting</div>
+        <div class="desc"><strong>Psychology, inside CS</strong> — channeling my interest in human behavior through HCI, UX research, and behavioral data science rather than a separate degree.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Building</div>
+        <div class="desc"><strong>A freelance writing practice</strong> — using this gap year to get my writing in front of more readers and start earning from it.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Reading</div>
+        <div class="desc"><strong>Cosmology, philosophy, history</strong> — the questions that don't have deadlines, worked on in parallel with the ones that do.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="find-me">
+    <div class="waypoint">waypoint 04 — find me</div>
+    <h2>If something here resonated, I'd like to hear it.</h2>
+    <div class="contact-card">
+      <p>Whether it's about the writing, a freelance project, or just a good root question — reach out.</p>
+      <a class="mail-link" href="mailto:youremail@example.com">youremail@example.com</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>Nagaraja — Tamil Nadu, India</span>
+  <span>Still asking, still walking</span>
+</footer>
+
+<script>
+(function(){
+  var fill = document.getElementById('roadFill');
+  var dot = document.getElementById('roadDot');
+  var topbar = document.getElementById('topbar');
+  var path = fill;
+  var len = path.getTotalLength();
+  fill.style.strokeDasharray = len;
+  fill.style.strokeDashoffset = len;
+
+  function onScroll(){
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var frac = docHeight > 0 ? Math.min(Math.max(scrollTop / docHeight, 0), 1) : 0;
+
+    fill.style.strokeDashoffset = String(len - len * frac);
+
+    var pt = path.getPointAtLength(len * frac);
+    dot.setAttribute('cx', pt.x);
+    dot.setAttribute('cy', pt.y);
+
+    topbar.style.width = (frac * 100) + '%';
+  }
+
+  window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
