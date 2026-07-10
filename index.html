@@ -251,10 +251,10 @@
   .hero-mark{
     display:none;
     position:absolute;
-    right:-64px;
-    top:50%;
-    transform:translateY(-50%) rotate(90deg);
-    transform-origin:right center;
+    right:-52px;
+    top:150px;
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
     font-family:'JetBrains Mono', monospace;
     font-size:11px;
     letter-spacing:0.32em;
@@ -262,6 +262,7 @@
     color:var(--muted);
     opacity:0.55;
     white-space:nowrap;
+    pointer-events:none;
   }
   @media (min-width:1180px){
     .wrap{ max-width:860px; }
