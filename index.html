@@ -35,14 +35,14 @@
     --bg: #F3EEE2;
     --bg-alt: #ECE5D4;
     --surface: #FBF8F1;
-    --paper: #241F1A;
-    --paper-dim: #5C5346;
-    --accent: #A8672C;
-    --accent-2: #3F6B57;
-    --muted: #837A6A;
-    --line: rgba(36,31,26,0.1);
+    --paper: #221D18;
+    --paper-dim: #4A4137;
+    --accent: #9C5E28;
+    --accent-2: #35594A;
+    --muted: #6B6254;
+    --line: rgba(36,31,26,0.12);
     --shadow: rgba(90,70,40,0.14);
-    --accent-glow: rgba(168,103,44,0.45);
+    --accent-glow: rgba(156,94,40,0.4);
   }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
@@ -194,18 +194,22 @@
     stroke:var(--line);
     stroke-width:1.5;
     fill:none;
+    transition:stroke .35s ease;
   }
   #road .fill{
     stroke:var(--accent);
     stroke-width:1.5;
+    stroke-opacity:0.85;
     fill:none;
     stroke-dasharray:2400;
     stroke-dashoffset:2400;
-    transition:stroke-dashoffset .08s linear;
+    transition:stroke-dashoffset .08s linear, stroke .35s ease;
   }
+  :root[data-theme="light"] #road .fill{ stroke-opacity:0.65; }
   #road .dot{
     fill:var(--accent);
     filter:drop-shadow(0 0 6px var(--accent-glow));
+    transition:fill .35s ease;
   }
   @media (max-width:900px){
     #road{ display:none; }
@@ -242,6 +246,26 @@
     flex-direction:column;
     justify-content:center;
     padding:120px 0 80px;
+    position:relative;
+  }
+  .hero-mark{
+    display:none;
+    position:absolute;
+    right:-64px;
+    top:50%;
+    transform:translateY(-50%) rotate(90deg);
+    transform-origin:right center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--muted);
+    opacity:0.55;
+    white-space:nowrap;
+  }
+  @media (min-width:1180px){
+    .wrap{ max-width:860px; }
+    .hero-mark{ display:block; }
   }
   .eyebrow{
     font-family:'JetBrains Mono', monospace;
@@ -388,6 +412,27 @@
   }
   .cta-line a{ color:var(--accent-2); text-decoration-color:rgba(92,131,116,0.4); }
   .cta-line a:hover{ text-decoration-color:var(--accent-2); }
+
+  .aside-note{
+    margin-top:26px;
+    font-size:0.92rem;
+    color:var(--muted);
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    max-width:60ch;
+  }
+  .aside-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:2px 6px;
+    flex-shrink:0;
+  }
 
   .pull{
     font-family:'Fraunces', serif;
@@ -578,6 +623,7 @@
     <p class="sub">I'm Nagaraja — a systems thinker, writer, and gap-year engineer-in-waiting. I ask root questions before I look for fixes, and I write down what the walk teaches me.</p>
     <div class="who">Writer of "Who Am I — I Am Still Asking" · Reader of cosmology, psychology, philosophy, history</div>
     <div class="scroll-cue"><span class="stem"></span>keep walking</div>
+    <div class="hero-mark" aria-hidden="true">Seydunganallur · Gap Year · Still Walking</div>
   </section>
 
   <section id="road-so-far">
@@ -625,7 +671,7 @@
         <span class="tag">on history</span>
       </a>
       <a class="post" href="https://nagaraja18665.blogspot.com/2026/05/vulnerable-but-not-broken-i-am-still.html" target="_blank" rel="noopener">
-        <span class="t">Vulnerable but Not Broken — I Am Still Asking</span>
+        <span class="t">Vulnerable But Not Broken: I Am Still Becoming</span>
         <span class="tag">on vulnerability</span>
       </a>
       <a class="post" href="https://nagaraja18665.blogspot.com/2026/05/why-i-quit-trying-and-why-im-starting.html" target="_blank" rel="noopener">
@@ -638,7 +684,7 @@
       </a>
     </div>
 
-    <p style="margin-top:28px;">I also applied to speak at Medium Day 2026 — a talk on rejection, identity, and what survives both.</p>
+    <p class="aside-note"><span class="aside-tag">note</span> Also applied to speak at Medium Day 2026 — a talk on rejection, identity, and what survives both.</p>
 
     <div class="elsewhere">
       <a href="https://nagaraja18665.blogspot.com/" target="_blank" rel="noopener">Blog →</a>
