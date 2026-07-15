@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When "Fixed" Isn't Fixed — Nagaraja</title>
+<meta name="description" content="A UX research case study on a broken repair-escalation system, documented in real time by Nagaraja over a 48-day consumer dispute.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Literata:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12151B;
+    --surface: #1D222C;
+    --paper: #EDE7DA;
+    --paper-dim: #B8B2A3;
+    --accent: #C99A5B;
+    --accent-2: #5C8374;
+    --muted: #78808F;
+    --line: rgba(237,231,218,0.09);
+    --maxw: 680px;
+  }
+  :root[data-theme="light"]{
+    --bg: #F3EEE2;
+    --surface: #FBF8F1;
+    --paper: #221D18;
+    --paper-dim: #4A4137;
+    --accent: #9C5E28;
+    --accent-2: #35594A;
+    --muted: #6B6254;
+    --line: rgba(36,31,26,0.12);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'Literata', serif;
+    font-size:17px;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    transition:background-color .35s ease, color .35s ease;
+  }
+  a{ color:var(--accent); text-decoration-color:rgba(201,154,91,0.4); text-underline-offset:3px; }
+  a:hover{ text-decoration-color:var(--accent); }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; color:var(--paper); }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+
+  header{
+    padding:100px 0 50px;
+    border-bottom:1px solid var(--line);
+  }
+  .back{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:36px;
+    transition:color .2s ease, gap .2s ease;
+  }
+  .back:hover{ color:var(--accent); gap:12px; }
+  .case-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    margin-bottom:18px;
+    display:block;
+  }
+  header h1{
+    font-size:clamp(1.9rem, 5vw, 2.7rem);
+    line-height:1.18;
+    max-width:16ch;
+    margin-bottom:20px;
+  }
+  header .dek{
+    color:var(--paper-dim);
+    font-style:italic;
+    font-size:1.05rem;
+    max-width:52ch;
+  }
+  .meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 28px;
+    margin-top:36px;
+  }
+  .meta-stat .num{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.3rem;
+    color:var(--accent);
+    display:block;
+  }
+  .meta-stat .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:2px;
+    display:block;
+  }
+
+  main{ padding:60px 0 100px; }
+  main h2{
+    font-size:1.4rem;
+    margin:56px 0 20px;
+    padding-top:4px;
+  }
+  main h2:first-child{ margin-top:0; }
+  main p{ color:var(--paper-dim); margin-bottom:18px; max-width:60ch; }
+  main p strong{ color:var(--paper); font-weight:600; }
+  main ol, main ul{ color:var(--paper-dim); margin:0 0 22px 22px; }
+  main li{ margin-bottom:12px; max-width:56ch; }
+  main li strong{ color:var(--paper); }
+
+  .callout{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.2rem;
+    color:var(--paper);
+    max-width:44ch;
+    line-height:1.5;
+    margin:36px 0;
+    padding-left:22px;
+    border-left:2px solid var(--accent);
+  }
+
+  .decision{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:20px 24px;
+    margin-bottom:18px;
+  }
+  .decision p{ margin-bottom:0; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:44px 0 60px;
+  }
+  footer p{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+    max-width:56ch;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <a class="back" href="index.html">&larr; back to the road</a>
+    <span class="case-tag">case study · consumer systems · UX research</span>
+    <h1>When "Fixed" Isn't Fixed</h1>
+    <p class="dek">A first-person research case study on a broken repair-escalation system, documented in real time over a 48-day consumer dispute.</p>
+    <div class="meta-row">
+      <div class="meta-stat"><span class="num">48</span><span class="lbl">days documented</span></div>
+      <div class="meta-stat"><span class="num">4</span><span class="lbl">motherboards</span></div>
+      <div class="meta-stat"><span class="num">39</span><span class="lbl">record versions</span></div>
+      <div class="meta-stat"><span class="num">₹58,100</span><span class="lbl">at stake</span></div>
+    </div>
+  </header>
+
+  <main>
+    <h2>Context</h2>
+    <p>In May 2026, I submitted a laptop (HP 250R G10, purchased for ₹58,100) for warranty repair after a Bluetooth fault that had existed since purchase. What should have been a routine repair became a 48-day dispute involving four motherboard replacements, two additional defects introduced during "repair," a formal legal notice, and an active consumer court filing in preparation.</p>
+    <p>This case study isn't about whether HP is a good or bad company. It's about something more useful: <strong>what happens to an ordinary user when a large organization's support system has no single owner, no reliable source of truth, and no accountability for its own claims.</strong> I lived inside that system for seven weeks and documented every interaction as it happened. What follows is what that documentation reveals.</p>
+
+    <h2>The Core UX Failure</h2>
+    <p>Strip away the specifics, and the system had one structural defect: <strong>no one inside it was accountable for the whole problem — only for their own narrow piece of it.</strong> This showed up in four repeating patterns.</p>
+
+    <ol>
+      <li><strong>Fragmented ownership.</strong> Across the case, I dealt with rotating contacts — several names on HP's service-head channel, a separate social media contact, the National Consumer Helpline, and the local service centre — none of whom appeared to share a consistent record of what the others had said or done. Two separate HP support accounts once contradicted each other about a repair claim on my own device, minutes apart.</li>
+      <li><strong>Claims without verification.</strong> A claim that my SSD had been replaced originated from an internal miscommunication — a diagnostic swap, done to isolate a fault, got summarized somewhere along HP's chain as an actual replacement, and was passed to me as fact. I only closed this by independently checking Device Manager and Disk Management myself, and getting a written clarification from the technician. The system produced a false claim about my own property, and the burden of disproving it fell entirely on me.</li>
+      <li><strong>"Fixed" was declared, not verified.</strong> The laptop was handed back in person with a verbal assurance it was "ready and working fine." Within hours, it had a total charging failure. The next day, testing revealed the fingerprint sensor — the original defect the case was opened for — was non-functional again, on the fourth motherboard. Nothing in the process required functional verification before a unit was called resolved and handed back.</li>
+      <li><strong>The user became the system's memory.</strong> By the time I'd documented this, I was tracking two postal articles, three separate legal deadlines, four motherboard histories, and a dozen contact threads — because no single part of the process was doing that tracking for me.</li>
+    </ol>
+
+    <h2>The Decision Points</h2>
+    <p>A few moments in this case required a judgment call under incomplete information — the actual skill this case exists to demonstrate, beyond just documentation.</p>
+
+    <div class="decision">
+      <p><strong>When a claim appeared with no prior record anywhere in the case history</strong>, I chose to push back and verify independently rather than accept it or dismiss it outright — asking for the service record while checking the system myself. That combination closed the issue cleanly, with evidence, instead of leaving it as an unresolved dispute.</p>
+    </div>
+    <div class="decision">
+      <p><strong>When a new fault appeared hours after handover</strong>, I chose not to intervene myself, and instead documented every troubleshooting step already taken before flagging it — protecting both the warranty and the evidentiary record that the fault was pre-existing.</p>
+    </div>
+    <div class="decision">
+      <p><strong>When two legal deadlines were running in parallel</strong>, I chose to track them independently rather than assume they were the same clock. They weren't — conflating them would have cost a real legal option.</p>
+    </div>
+
+    <h2>What a Well-Designed Resolution System Would Look Like</h2>
+    <p>If I were designing the process that should have existed:</p>
+    <ul>
+      <li><strong>A single named case owner</strong>, not a rotating cast of contacts, with authority to see the entire history — not just their department's slice of it.</li>
+      <li><strong>A verified, timestamped source of truth for every claim</strong> that both the company and the customer can see — not claims relayed and later walked back.</li>
+      <li><strong>A mandatory functional checklist before any unit is marked "resolved"</strong> — every subsystem that was ever faulty gets tested and signed off before handover.</li>
+      <li><strong>A default assumption that the customer's independent verification is valid evidence</strong>, not something to be second-guessed.</li>
+      <li><strong>Automatic compounding-defect detection</strong> — a system that flags a recurring fault instead of treating each occurrence as a fresh, unrelated ticket.</li>
+    </ul>
+    <p>None of this requires new technology. It requires treating case continuity and verification as the product, not an afterthought to the repair itself.</p>
+
+    <h2>The Broader Pattern</h2>
+    <p>This case is one laptop, one company, one person. But the failure mode isn't unique to any single company — it's the default shape of most large-scale consumer support systems, because each department optimizes for closing its own ticket, not for the customer's continuous experience across the whole process.</p>
+    <div class="callout">"The gap between what a company says its process is, and what a user actually experiences, is where real harm happens — and someone has to be able to see and name that gap clearly enough to fix it."</div>
+    <p>What made this case survivable, rather than a total loss of time and money, wasn't luck — it was building, by hand, the exact structure the system should have provided: a single continuous record, independent verification at each step, and tracked deadlines.</p>
+  </main>
+
+  <footer>
+    <p>Documented in real time as Version 39 of a personal case record, updated July 15, 2026. This case study was written as part of an ongoing practice of turning lived systems failures into structured research.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var saved = null;
+  try{ saved = localStorage.getItem('theme'); } catch(e){}
+  if(saved === 'light' || saved === 'dark'){
+    root.setAttribute('data-theme', saved);
+  } else {
+    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    root.setAttribute('data-theme', prefersLight ? 'light' : 'dark');
+  }
+})();
+</script>
+
+</body>
+</html>
