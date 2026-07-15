@@ -533,6 +533,77 @@
     .now-item{ grid-template-columns:1fr; gap:6px; }
   }
 
+  /* case study card */
+  .case-card{
+    margin-top:44px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    border-radius:2px;
+    padding:36px;
+    text-decoration:none;
+    display:block;
+    transition:border-color .3s ease, transform .3s cubic-bezier(.2,.7,.3,1);
+  }
+  .case-card:hover{ border-color:var(--accent); transform:translateY(-3px); }
+  .case-card .case-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    margin-bottom:14px;
+    display:block;
+    transition:color .3s ease;
+  }
+  .case-card:hover .case-tag{ color:var(--accent); }
+  .case-card h3{
+    font-size:1.35rem;
+    color:var(--paper);
+    margin-bottom:14px;
+    max-width:22ch;
+  }
+  .case-card p{
+    color:var(--paper-dim);
+    font-size:0.98rem;
+    margin-bottom:0;
+    max-width:56ch;
+  }
+  .case-stats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 28px;
+    margin:22px 0 24px;
+  }
+  .case-stat{
+    font-family:'JetBrains Mono', monospace;
+  }
+  .case-stat .num{
+    display:block;
+    font-size:1.3rem;
+    color:var(--accent);
+    font-family:'Fraunces', serif;
+    font-weight:600;
+  }
+  .case-stat .lbl{
+    display:block;
+    font-size:10.5px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:2px;
+  }
+  .case-read{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--accent);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:6px;
+  }
+  .case-card:hover .case-read{ gap:12px; }
+  .case-read span{ transition:transform .3s ease; }
+
   /* contact */
   .contact-card{
     margin-top:40px;
@@ -579,6 +650,7 @@
     <ul id="navList">
       <li><a href="#road-so-far">the road so far</a></li>
       <li><a href="#writing">notes from the walk</a></li>
+      <li><a href="#research">field notes</a></li>
       <li><a href="#now">where I am now</a></li>
       <li><a href="#find-me">find me</a></li>
     </ul>
@@ -678,8 +750,26 @@
     </div>
   </section>
 
+  <section id="research">
+    <div class="waypoint">waypoint 03 — field notes</div>
+    <h2>When the systems around me break, I take notes.</h2>
+    <p>Alongside the personal writing, I've started documenting the systems I run into — where they fail an ordinary person, and what a better-designed version would look like. This is the practical edge of the same root-question instinct: not just asking why, but proposing what should replace it.</p>
+
+    <a class="case-card" href="HP_Case_Study_UX_Research.html" target="_blank" rel="noopener">
+      <span class="case-tag">case study · consumer systems</span>
+      <h3>When "Fixed" Isn't Fixed</h3>
+      <div class="case-stats">
+        <div class="case-stat"><span class="num">48</span><span class="lbl">days documented</span></div>
+        <div class="case-stat"><span class="num">4</span><span class="lbl">motherboards</span></div>
+        <div class="case-stat"><span class="num">39</span><span class="lbl">record versions</span></div>
+      </div>
+      <p>A first-person research case study on a laptop repair dispute — tracing how fragmented ownership, unverified claims, and no functional checklist before handover turn a routine repair into a seven-week failure. Includes the decisions I made under incomplete information, and what a well-designed resolution system would look like instead.</p>
+      <div class="case-read"><span>Read the case study →</span></div>
+    </a>
+  </section>
+
   <section id="now">
-    <div class="waypoint">waypoint 03 — where I am now</div>
+    <div class="waypoint">waypoint 04 — where I am now</div>
     <h2>In transition. Building toward CSE, deliberately.</h2>
     <p>I finished 12th grade and I'm now in a short transition period, working through TNEA 2026 counseling toward a B.E. in Computer Science or IT. The plan was once B.E. → a Master's abroad on a fixed timeline; family circumstances have made me redraw that into something more patient, without giving up the underlying direction.</p>
 
@@ -704,7 +794,7 @@
   </section>
 
   <section id="find-me">
-    <div class="waypoint">waypoint 04 — find me</div>
+    <div class="waypoint">waypoint 05 — find me</div>
     <h2>If something here resonated, I'd like to hear it.</h2>
     <p class="cta-line">Not sure where to start? <a href="#writing">Read the writing</a> first, or just say hello below.</p>
     <div class="contact-card">
