@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Before the Road: The Big Bang to Now — Nagaraja</title>
+<meta name="description" content="A walk through 13.8 billion years of cosmic history, from the Big Bang to right now — by Nagaraja.">
+<meta property="og:title" content="Before the Road: The Big Bang to Now">
+<meta property="og:description" content="A walk through 13.8 billion years of cosmic history, from the Big Bang to right now.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://nagaraja276.github.io/bigbang.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Literata:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #12151B; --bg-alt: #171B23; --surface: #1D222C;
+    --paper: #EDE7DA; --paper-dim: #B8B2A3; --accent: #C99A5B; --accent-2: #5C8374;
+    --muted: #78808F; --line: rgba(237,231,218,0.09); --shadow: rgba(0,0,0,0.35);
+    --accent-glow: rgba(201,154,91,0.7); --maxw: 720px;
+  }
+  :root[data-theme="light"]{
+    --bg: #F3EEE2; --bg-alt: #ECE5D4; --surface: #FBF8F1;
+    --paper: #221D18; --paper-dim: #4A4137; --accent: #9C5E28; --accent-2: #35594A;
+    --muted: #6B6254; --line: rgba(36,31,26,0.12); --shadow: rgba(90,70,40,0.14);
+    --accent-glow: rgba(156,94,40,0.4);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg); color:var(--paper); font-family:'Literata', serif;
+    font-size:17px; line-height:1.7; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden; transition:background-color .35s ease, color .35s ease;
+  }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+  a{ color:inherit; }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; }
+  ::selection{ background:var(--accent); color:var(--bg); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; position:relative; }
+  @media (min-width:1180px){ .wrap{ max-width:860px; } }
+
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+    padding:22px 32px; font-family:'JetBrains Mono', monospace; font-size:12px;
+    letter-spacing:0.06em; text-transform:uppercase; mix-blend-mode:difference;
+  }
+  .mark{ color:var(--paper); font-weight:500; text-decoration:none; }
+  .nav-right{ display:flex; align-items:center; gap:20px; }
+  nav a.back{ text-decoration:none; color:var(--paper-dim); transition:color .2s; }
+  nav a.back:hover{ color:var(--paper); }
+  .theme-toggle{
+    background:var(--surface); border:1px solid var(--line); border-radius:20px;
+    width:38px; height:22px; padding:2px; cursor:pointer; display:flex; align-items:center;
+    position:relative; transition:border-color .25s ease, background-color .35s ease;
+    mix-blend-mode:normal; isolation:isolate;
+  }
+  .theme-toggle:hover{ border-color:var(--accent); }
+  .theme-toggle .knob{
+    width:16px; height:16px; border-radius:50%; background:var(--accent);
+    transform:translateX(0); transition:transform .3s cubic-bezier(.4,0,.2,1), background-color .3s ease;
+    display:flex; align-items:center; justify-content:center; font-size:9px;
+  }
+  :root[data-theme="light"] .theme-toggle .knob{ transform:translateX(16px); }
+
+  main{ position:relative; z-index:1; }
+
+  .article-hero{
+    min-height:60svh; display:flex; flex-direction:column; justify-content:center;
+    padding:140px 0 60px;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:22px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--accent); display:inline-block; }
+  .article-hero h1{
+    font-size:clamp(2rem, 5.5vw, 3.1rem); line-height:1.15; color:var(--paper); max-width:16ch;
+  }
+  .article-hero h1 em{ font-style:italic; color:var(--accent); }
+  .article-hero .sub{ margin-top:26px; max-width:52ch; color:var(--paper-dim); font-size:1.06rem; }
+  .article-meta{
+    margin-top:36px; font-family:'JetBrains Mono', monospace; font-size:12px;
+    color:var(--muted); letter-spacing:0.03em; display:flex; gap:22px; flex-wrap:wrap;
+  }
+
+  section{ padding:80px 0; border-top:1px solid var(--line); }
+  section:first-of-type{ border-top:none; }
+
+  .waypoint{
+    font-family:'JetBrains Mono', monospace; font-size:12px; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--accent-2); margin-bottom:18px;
+  }
+  section h2{
+    font-size:clamp(1.4rem, 3vw, 1.9rem); color:var(--paper); max-width:20ch; margin-bottom:26px;
+    position:relative; display:inline-block;
+  }
+  section h2::after{ content:''; display:block; height:2px; width:46px; background:var(--accent); margin-top:10px; }
+  section p{ max-width:64ch; color:var(--paper-dim); margin-bottom:18px; }
+  section p strong{ color:var(--paper); font-weight:600; }
+
+  .pull{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+    font-size:clamp(1.25rem, 2.8vw, 1.7rem); color:var(--paper); max-width:26ch;
+    line-height:1.4; margin:30px 0; padding-left:24px; border-left:2px solid var(--accent);
+  }
+
+  .traits{ display:grid; grid-template-columns:1fr 1fr; gap:26px 36px; margin-top:36px; }
+  @media (max-width:640px){ .traits{ grid-template-columns:1fr; } }
+  .trait{ transition:transform .3s cubic-bezier(.2,.7,.3,1); }
+  .trait:hover{ transform:translateY(-4px); }
+  .trait .when{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:0.05em;
+    text-transform:uppercase; color:var(--muted); margin-bottom:6px; display:block;
+  }
+  .trait h3{ font-size:1.02rem; color:var(--paper); margin-bottom:8px; font-weight:600; transition:color .25s ease; }
+  .trait:hover h3{ color:var(--accent); }
+  .trait p{ font-size:0.95rem; margin-bottom:0; }
+
+  /* cosmic calendar, reusing the now-item pattern */
+  .now-list{ margin-top:16px; }
+  .now-item{
+    display:grid; grid-template-columns:130px 1fr; gap:22px; padding:16px 0;
+    border-bottom:1px solid var(--line); transition:padding-left .3s ease, border-color .3s ease;
+  }
+  .now-item:hover{ padding-left:8px; border-color:var(--accent); }
+  .now-item:first-child{ border-top:1px solid var(--line); }
+  .now-item .status{
+    font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--accent-2);
+    text-transform:uppercase; letter-spacing:0.05em; padding-top:2px; transition:color .3s ease;
+  }
+  .now-item:hover .status{ color:var(--accent); }
+  .now-item .desc{ color:var(--paper-dim); font-size:0.96rem; }
+  .now-item .desc strong{ color:var(--paper); display:block; margin-bottom:3px; font-family:'Fraunces', serif; font-weight:600; }
+  @media (max-width:560px){ .now-item{ grid-template-columns:1fr; gap:6px; } }
+
+  .aside-note{
+    margin-top:22px; font-size:0.9rem; color:var(--muted); display:flex;
+    align-items:baseline; gap:10px; max-width:60ch;
+  }
+  .aside-tag{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--accent-2); border:1px solid var(--line);
+    border-radius:3px; padding:2px 6px; flex-shrink:0;
+  }
+
+  .closing{
+    text-align:left;
+  }
+  .closing .pull{ max-width:34ch; }
+
+  footer{
+    padding:48px 0 60px; font-family:'JetBrains Mono', monospace; font-size:11.5px;
+    color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  footer a{ color:var(--accent-2); text-decoration:none; }
+  footer a:hover{ color:var(--accent); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="mark" href="index.html">NAGARAJA</a>
+  <div class="nav-right">
+    <a class="back" href="index.html#writing">← back to the walk</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" aria-pressed="false">
+      <span class="knob" id="themeKnob">☾</span>
+    </button>
+  </div>
+</nav>
+
+<main class="wrap" data-pagefind-body>
+
+  <section class="article-hero">
+    <div class="eyebrow">long read · cosmic history</div>
+    <h1>Before the <em>road</em> was a road, it was thirteen billion years of dust.</h1>
+    <p class="sub">Everything on this site — everything anyone has ever written, built, or felt — sits at the very end of a much longer walk. This is that walk, from the first instant to right now.</p>
+    <div class="article-meta">
+      <span>13.8 billion years, compressed</span>
+      <span>~9 min read</span>
+    </div>
+  </section>
+
+  <section id="calendar">
+    <div class="waypoint">the cosmic calendar</div>
+    <h2>If the universe were one year old</h2>
+    <p>Astronomer Carl Sagan popularized this device: compress 13.8 billion years into a single calendar year. On this scale, one day equals roughly 38 million real years — and every human being who has ever lived fits into the final seconds of December 31st.</p>
+    <div class="now-list">
+      <div class="now-item">
+        <div class="status">Jan 1, 00:00</div>
+        <div class="desc"><strong>The Big Bang</strong>All space, time, matter, and energy begin expanding from an extremely hot, dense state.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Jan 1 – 10</div>
+        <div class="desc"><strong>First atoms form</strong>The universe cools enough for hydrogen and helium nuclei to capture electrons; light finally travels freely.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">March</div>
+        <div class="desc"><strong>First stars and galaxies</strong>Gravity pulls primordial gas into the first stars, which forge heavier elements and seed the first galaxies.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Sept 2</div>
+        <div class="desc"><strong>The Milky Way takes shape</strong>Our home galaxy assembles from mergers of smaller galaxies and gas clouds.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Sept 9</div>
+        <div class="desc"><strong>The Sun ignites</strong>A cloud of gas and dust collapses to form our star, with a disk of leftover material around it.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Sept 14</div>
+        <div class="desc"><strong>Earth forms</strong>Rocky debris in the young solar system collides and clumps into the planets, including Earth.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Sept 30</div>
+        <div class="desc"><strong>Life appears</strong>The earliest single-celled life emerges in Earth's oceans.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Dec 17</div>
+        <div class="desc"><strong>Complex, multicellular life</strong>Organisms made of many cooperating cells become common.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Dec 26</div>
+        <div class="desc"><strong>The Cambrian explosion</strong>Animal body plans diversify rapidly; hard shells and complex eyes appear.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Dec 30, morning</div>
+        <div class="desc"><strong>Age of dinosaurs</strong>Dinosaurs dominate the land for well over a hundred million years.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Dec 30, 9:24 pm</div>
+        <div class="desc"><strong>The dinosaurs' last day</strong>An asteroid impact ends the age of dinosaurs and reshapes life on Earth.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Dec 31, 10:30 pm</div>
+        <div class="desc"><strong>First hominins</strong>Early human ancestors begin walking upright in Africa.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">Dec 31, 11:52 pm</div>
+        <div class="desc"><strong>Homo sapiens</strong>Anatomically modern humans appear.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">11:59:46 pm</div>
+        <div class="desc"><strong>Agriculture begins</strong>Farming and permanent settlements start — the last 10,000 years.</div>
+      </div>
+      <div class="now-item">
+        <div class="status">11:59:59 pm</div>
+        <div class="desc"><strong>All of recorded history</strong>Empires, philosophy, science, and every book ever written happen in the final second.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="first-instants">
+    <div class="waypoint">waypoint 01 — the first instants</div>
+    <h2>What happened in the first 380,000 years</h2>
+    <p>In the tiniest fractions of a second after the Big Bang, the universe went through changes more extreme than anything since.</p>
+    <div class="traits">
+      <div class="trait">
+        <span class="when">0 – 10⁻⁴³ seconds</span>
+        <h3>The Planck Epoch</h3>
+        <p>The earliest moment physics can describe. Gravity, electromagnetism, and the nuclear forces are thought to be unified into a single force. Our current theories break down before this point.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~10⁻³² seconds</span>
+        <h3>Cosmic Inflation</h3>
+        <p>The universe undergoes an incomprehensibly fast expansion, growing by a factor of at least 10²⁶ in a fraction of a second, smoothing the universe out and planting the seeds of future galaxies.</p>
+      </div>
+      <div class="trait">
+        <span class="when">First few minutes</span>
+        <h3>Big Bang Nucleosynthesis</h3>
+        <p>As the universe cools past a billion degrees, protons and neutrons fuse into the first light nuclei — mostly hydrogen and helium, with trace lithium.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~380,000 years</span>
+        <h3>Recombination &amp; First Light</h3>
+        <p>Electrons bind to nuclei, forming neutral atoms. Light is freed to travel unobstructed for the first time — the afterglow is the cosmic microwave background, still detectable today.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="dark-ages">
+    <div class="waypoint">waypoint 02 — dark ages, first light</div>
+    <h2>For hundreds of millions of years, no stars at all</h2>
+    <p>Only cooling gas drifting in the dark. Then gravity did its slow work.</p>
+    <div class="traits">
+      <div class="trait">
+        <span class="when">380,000 yrs – ~150M yrs</span>
+        <h3>The Cosmic Dark Ages</h3>
+        <p>With no stars yet formed, the universe is filled with neutral hydrogen and helium gas and very little light, while gravity quietly pulls denser pockets together.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~100 – 250 million years</span>
+        <h3>The First Stars</h3>
+        <p>Enormous, short-lived stars made purely of hydrogen and helium ignite, forging the first heavier elements and scattering them in supernova explosions.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~400M – 1B years</span>
+        <h3>First Galaxies</h3>
+        <p>Star clusters merge and gas collapses further, building the first small galaxies. Ultraviolet light from young stars re-ionizes the surrounding hydrogen gas.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~8.8 billion years</span>
+        <h3>The Milky Way Forms</h3>
+        <p>Our home galaxy assembles gradually through mergers with smaller galaxies, building up its spiral disk over billions of years.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sun-earth">
+    <div class="waypoint">waypoint 03 — our sun and earth</div>
+    <h2>An ordinary cloud of dust becomes home</h2>
+    <p>About two-thirds of the way through cosmic history, a star ignites — and the planet we call home takes shape around it.</p>
+    <div class="traits">
+      <div class="trait">
+        <span class="when">4.6 billion years ago</span>
+        <h3>The Sun Ignites</h3>
+        <p>A cloud of gas and dust, disturbed perhaps by a nearby supernova, collapses under gravity. At its center, fusion ignites — the Sun is born, ringed by a spinning disk of leftover material.</p>
+      </div>
+      <div class="trait">
+        <span class="when">4.54 billion years ago</span>
+        <h3>Earth Forms</h3>
+        <p>Within that disk, dust grains stick together, then rocks, then planet-sized bodies. Earth accretes from countless collisions, starting out as a molten world.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~4.5 billion years ago</span>
+        <h3>The Moon is Born</h3>
+        <p>A Mars-sized body collides with the young Earth. Debris from the impact coalesces into the Moon, which later stabilizes Earth's tilt and drives its tides.</p>
+      </div>
+      <div class="trait">
+        <span class="when">4.1 – 3.8 billion years ago</span>
+        <h3>Heavy Bombardment</h3>
+        <p>Earth and its neighbors are pelted by asteroids and comets left over from planet formation — some of which may have delivered water and organic molecules.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="life-begins">
+    <div class="waypoint">waypoint 04 — life begins</div>
+    <h2>Where chemistry crossed into biology</h2>
+    <p>It remains one of science's deepest open questions — but the fossil and chemical evidence narrows the window considerably.</p>
+    <div class="traits">
+      <div class="trait">
+        <span class="when">~3.8 – 3.5 billion years ago</span>
+        <h3>The First Life</h3>
+        <p>The earliest widely accepted evidence of life — simple, single-celled microbes — appears in the rock record. All known life today descends from this common ancestor.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~2.4 billion years ago</span>
+        <h3>The Great Oxidation Event</h3>
+        <p>Photosynthetic microbes begin pumping oxygen into the atmosphere for the first time, poisoning most existing life but opening the door for oxygen-breathing organisms.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~2.1 billion years ago</span>
+        <h3>Complex Cells Emerge</h3>
+        <p>Eukaryotic cells — with a nucleus and internal structures — appear, likely when one microbe engulfed another in a partnership that became permanent.</p>
+      </div>
+      <div class="trait">
+        <span class="when">1.5B – 600M years ago</span>
+        <h3>Multicellular Life</h3>
+        <p>Cells begin cooperating permanently as single organisms. Simple multicellular algae, fungi, and eventually early animals appear.</p>
+      </div>
+    </div>
+    <div class="pull">"Every living thing on Earth shares the same basic genetic code."</div>
+  </section>
+
+  <section id="life-diversifies">
+    <div class="waypoint">waypoint 05 — life diversifies</div>
+    <h2>Evolution starts producing an extraordinary range of forms</h2>
+    <p>On scales of hundreds of millions of years, once multicellular life took hold.</p>
+    <div class="traits">
+      <div class="trait">
+        <span class="when">541 million years ago</span>
+        <h3>The Cambrian Explosion</h3>
+        <p>In a geologically brief window, most major animal body plans appear for the first time, along with hard shells, complex eyes, and active predation.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~470 million years ago</span>
+        <h3>Life Moves onto Land</h3>
+        <p>Plants, followed by arthropods and eventually vertebrates, colonize dry land for the first time, reshaping Earth's landscapes and atmosphere.</p>
+      </div>
+      <div class="trait">
+        <span class="when">252 – 66 million years ago</span>
+        <h3>The Age of Dinosaurs</h3>
+        <p>After the largest mass extinction in Earth's history at 252 million years ago, dinosaurs rise to dominate land ecosystems for over 180 million years.</p>
+      </div>
+      <div class="trait">
+        <span class="when">66 million years ago</span>
+        <h3>The Chicxulub Impact</h3>
+        <p>An asteroid roughly 10 km wide strikes what is now Mexico, ending the age of non-avian dinosaurs and clearing the way for mammals to diversify.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="humans">
+    <div class="waypoint">waypoint 06 — the rise of humans</div>
+    <h2>Less than 0.2% of Earth's history</h2>
+    <p>In the last sliver of geological time, a single species began to reshape the planet.</p>
+    <div class="traits">
+      <div class="trait">
+        <span class="when">~65 million years ago</span>
+        <h3>Mammals Diversify</h3>
+        <p>With the dinosaurs gone, mammals rapidly diversify into new ecological niches, including the early primates.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~6 – 7 million years ago</span>
+        <h3>Human and Chimp Lineages Split</h3>
+        <p>The evolutionary line leading to humans diverges from the line leading to chimpanzees, our closest living relatives.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~2.8 million years ago</span>
+        <h3>The Genus Homo Appears</h3>
+        <p>Early Homo species emerge in Africa, with larger brains and the first evidence of stone tool use.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~300,000 years ago</span>
+        <h3>Homo Sapiens</h3>
+        <p>Anatomically modern humans appear in Africa. For most of this time, humans live as small bands of hunter-gatherers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="civilization">
+    <div class="waypoint">waypoint 07 — civilization</div>
+    <h2>The last 12,000 years — a blink, in cosmic terms</h2>
+    <p>Nearly the entirety of human civilization as we know it fits inside this window.</p>
+    <div class="traits">
+      <div class="trait">
+        <span class="when">~12,000 years ago</span>
+        <h3>The Agricultural Revolution</h3>
+        <p>Independently in several regions, humans begin domesticating plants and animals, enabling permanent settlements.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~5,000 years ago</span>
+        <h3>Writing and Cities</h3>
+        <p>In Mesopotamia, Egypt, and later the Indus Valley and China, writing systems emerge alongside the first cities, laws, and organized states.</p>
+      </div>
+      <div class="trait">
+        <span class="when">~2,500 years ago</span>
+        <h3>Classical Civilizations</h3>
+        <p>Philosophy, mathematics, and formal governance flourish across Greece, Persia, India, and China, alongside empires and trade networks spanning continents.</p>
+      </div>
+      <div class="trait">
+        <span class="when">1760 – 1840</span>
+        <h3>The Industrial Revolution</h3>
+        <p>Steam power and mechanization transform production, travel, and daily life more rapidly than any previous change in human history.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="now">
+    <div class="waypoint">waypoint 08 — now</div>
+    <h2>The most recent chapter is also the most crowded</h2>
+    <p>And it is still being written.</p>
+    <div class="traits">
+      <div class="trait">
+        <span class="when">1900s – 1940s</span>
+        <h3>Modern Science</h3>
+        <p>Relativity and quantum mechanics rewrite our understanding of space, time, and matter, while two world wars reshape the global order.</p>
+      </div>
+      <div class="trait">
+        <span class="when">1957 – 1969</span>
+        <h3>The Space Age</h3>
+        <p>Sputnik reaches orbit in 1957; humans walk on the Moon in 1969 — the first steps by life from Earth onto another world.</p>
+      </div>
+      <div class="trait">
+        <span class="when">1970s – 2000s</span>
+        <h3>The Digital Revolution</h3>
+        <p>Computers move from research labs to homes and pockets. The internet connects billions of people into a single, continuously updating web of information.</p>
+      </div>
+      <div class="trait">
+        <span class="when">2026</span>
+        <h3>You Are Here</h3>
+        <p>13.8 billion years of expansion, fusion, chemistry, and evolution have led to this exact moment — someone reading a page, thinking about where they fit in the story.</p>
+      </div>
+    </div>
+    <p class="aside-note"><span class="aside-tag">note</span> Every atom in your body was forged in a star. The calcium in your bones, the iron in your blood, the oxygen you just breathed — all of it was made inside stars that lived and died long before the Sun existed.</p>
+  </section>
+
+  <section class="closing" id="close">
+    <div class="waypoint">end of the walk, for now</div>
+    <h2>The road goes back further than any road.</h2>
+    <div class="pull">Someone was fixing the roads a very, very long time before I got here.</div>
+    <p>In a very literal sense, the universe spent 13.8 billion years arranging itself into something that could read this sentence. That's not a small thing to be part of — it's the whole thing.</p>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>Nagaraja — Tamil Nadu, India</span>
+  <a href="index.html">← back home</a>
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeToggle');
+  var themeKnob = document.getElementById('themeKnob');
+
+  function applyTheme(mode){
+    if(mode === 'light'){
+      root.setAttribute('data-theme', 'light');
+      themeKnob.textContent = '☀';
+      themeBtn.setAttribute('aria-pressed', 'true');
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      themeKnob.textContent = '☾';
+      themeBtn.setAttribute('aria-pressed', 'false');
+    }
+  }
+
+  var saved = null;
+  try{ saved = localStorage.getItem('theme'); } catch(e){}
+  if(saved === 'light' || saved === 'dark'){
+    applyTheme(saved);
+  } else {
+    var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    applyTheme(prefersLight ? 'light' : 'dark');
+  }
+
+  themeBtn.addEventListener('click', function(){
+    var current = root.getAttribute('data-theme');
+    var next = current === 'light' ? 'dark' : 'light';
+    applyTheme(next);
+    try{ localStorage.setItem('theme', next); } catch(e){}
+  });
+})();
+</script>
+
+</body>
+</html>
