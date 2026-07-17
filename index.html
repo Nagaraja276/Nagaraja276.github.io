@@ -627,135 +627,6 @@
   }
   .mail-link:hover{ border-color:var(--accent); transform:translateX(3px); }
 
-  /* ---------- finder (search) ---------- */
-  .finder{
-    padding:56px 0 64px;
-  }
-  .finder-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:16px;
-    margin-bottom:22px;
-  }
-  .finder-tabs{
-    display:flex;
-    gap:4px;
-    background:var(--surface);
-    border:1px solid var(--line);
-    border-radius:20px;
-    padding:3px;
-  }
-  .finder-tab{
-    font-family:'JetBrains Mono', monospace;
-    font-size:11.5px;
-    letter-spacing:0.04em;
-    text-transform:uppercase;
-    color:var(--paper-dim);
-    background:transparent;
-    border:none;
-    border-radius:16px;
-    padding:7px 16px;
-    cursor:pointer;
-    transition:background-color .25s ease, color .25s ease;
-  }
-  .finder-tab.active{
-    background:var(--accent);
-    color:var(--bg);
-  }
-  .finder-tab:not(.active):hover{ color:var(--paper); }
-  .finder-panel{ min-height:52px; }
-
-  /* Pagefind UI re-themed to match site tokens */
-  .pagefind-ui{
-    --pagefind-ui-scale: 0.92;
-    --pagefind-ui-primary: var(--accent);
-    --pagefind-ui-text: var(--paper-dim);
-    --pagefind-ui-background: var(--surface);
-    --pagefind-ui-border: var(--line);
-    --pagefind-ui-border-width: 1px;
-    --pagefind-ui-border-radius: 2px;
-    --pagefind-ui-font: 'Literata', serif;
-  }
-  .pagefind-ui__search-input{ font-family:'Literata', serif; }
-  .pagefind-ui__result-title{ font-family:'Fraunces', serif; color:var(--paper); }
-  .pagefind-ui__result-link{ color:var(--paper); }
-  .pagefind-ui__button{
-    font-family:'JetBrains Mono', monospace;
-    text-transform:uppercase;
-    letter-spacing:0.05em;
-    font-size:11px;
-  }
-
-  /* Google Programmable Search — inline layout (no overlay popup).
-     These target Google's real DOM classes for the box + results, which
-     do accept CSS, unlike the overlay/iframe layer used by gcse-search. */
-  .gsc-control-cse{
-    background:transparent !important;
-    border:none !important;
-    padding:0 !important;
-    font-family:'Literata', serif !important;
-  }
-  .gsc-search-box{ margin-bottom:14px !important; }
-  table.gsc-search-box td.gsc-input{ padding-right:8px !important; }
-  .gsc-input-box{
-    background:var(--surface) !important;
-    border:1px solid var(--line) !important;
-    border-radius:2px !important;
-  }
-  input.gsc-input{
-    background:transparent !important;
-    color:var(--paper) !important;
-    font-family:'Literata', serif !important;
-    font-size:0.98rem !important;
-  }
-  .gsc-search-button-v2{
-    background:var(--accent) !important;
-    border:none !important;
-    border-radius:2px !important;
-    padding:9px 14px !important;
-  }
-  .gsc-search-button-v2:hover{ background:var(--accent) !important; opacity:0.85; }
-  .gsc-search-button-v2 svg{ fill:var(--bg) !important; }
-
-  .gsc-results-wrapper-overlay{ position:static !important; box-shadow:none !important; }
-  .gsc-results, .gsc-webResult.gsc-result, .gsc-expansionArea{
-    background:transparent !important;
-    border:none !important;
-  }
-  .gsc-webResult.gsc-result{
-    border-bottom:1px solid var(--line) !important;
-    padding:16px 0 !important;
-  }
-  .gs-title, .gs-title *{
-    color:var(--accent) !important;
-    font-family:'Fraunces', serif !important;
-    text-decoration:none !important;
-  }
-  .gs-snippet{
-    color:var(--paper-dim) !important;
-    font-family:'Literata', serif !important;
-    background:transparent !important;
-  }
-  .gs-visibleUrl, .gs-visibleUrl-short, .gs-visibleUrl-long{
-    color:var(--muted) !important;
-    font-family:'JetBrains Mono', monospace !important;
-    font-size:11px !important;
-  }
-  .gsc-cursor-page{
-    color:var(--paper-dim) !important;
-    font-family:'JetBrains Mono', monospace !important;
-  }
-  .gsc-cursor-current-page{ color:var(--accent) !important; }
-  .gcsc-find-more-on-google, .gcsc-find-more-on-google-magnifier{ display:none !important; }
-  .gcsc-more-maybe-branding-root{
-    color:var(--muted) !important;
-    opacity:0.6;
-    filter:grayscale(1);
-    margin-top:10px !important;
-  }
-
   footer{
     padding:48px 0 60px;
     font-family:'JetBrains Mono', monospace;
@@ -777,7 +648,6 @@
   <span class="mark">NAGARAJA</span>
   <div class="nav-right">
     <ul id="navList">
-      <li><a href="#search">search</a></li>
       <li><a href="#road-so-far">the road so far</a></li>
       <li><a href="#writing">notes from the walk</a></li>
       <li><a href="#research">field notes</a></li>
@@ -801,7 +671,7 @@
   </svg>
 </div>
 
-<main class="wrap" data-pagefind-body>
+<main class="wrap">
 
   <section class="hero">
     <div class="eyebrow">Seydunganallur, Thoothukudi · Tamil Nadu</div>
@@ -809,21 +679,6 @@
     <p class="sub">I'm Nagaraja — a systems thinker, writer, and transition-period engineer-in-waiting. I ask root questions before I look for fixes, and I write down what the walk teaches me.</p>
     <div class="who">Writer of "Who Am I — I Am Still Asking" · Reader of cosmology, psychology, philosophy, history</div>
     <div class="scroll-cue"><span class="stem"></span>keep walking</div>
-  </section>
-
-  <section class="finder" id="search" data-pagefind-ignore>
-    <div class="finder-head">
-      <span class="waypoint" style="margin-bottom:0;">looking for something</span>
-      <div class="finder-tabs" role="tablist" aria-label="Search scope">
-        <button class="finder-tab active" id="tabSite" role="tab" aria-selected="true">this site</button>
-        <button class="finder-tab" id="tabWeb" role="tab" aria-selected="false">the web</button>
-      </div>
-    </div>
-    <div id="siteSearch" class="finder-panel"></div>
-    <div id="webSearch" class="finder-panel" hidden>
-      <div class="gcse-searchbox-only"></div>
-      <div class="gcse-searchresults-only"></div>
-    </div>
   </section>
 
   <section id="road-so-far">
@@ -1038,7 +893,7 @@
   if(heroEl){ heroEl.classList.add('in-view'); }
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var sections = document.querySelectorAll('main > section:not(.hero):not(.finder)');
+  var sections = document.querySelectorAll('main > section:not(.hero)');
 
   if('IntersectionObserver' in window && !reduceMotion){
     var io = new IntersectionObserver(function(entries){
@@ -1054,56 +909,6 @@
   } else {
     sections.forEach(function(s){ s.classList.add('in-view'); });
   }
-
-  /* ---------- finder (search) ---------- */
-  var GOOGLE_CSE_ID = "76e0741aa551b4517"; // Nagaraja's Programmable Search Engine
-
-  var tabSite = document.getElementById('tabSite');
-  var tabWeb = document.getElementById('tabWeb');
-  var siteSearch = document.getElementById('siteSearch');
-  var webSearch = document.getElementById('webSearch');
-  var pagefindLoaded = false;
-  var gcseLoaded = false;
-
-  function loadPagefind(){
-    if(pagefindLoaded) return;
-    pagefindLoaded = true;
-    var css = document.createElement('link');
-    css.rel = 'stylesheet';
-    css.href = '/pagefind/pagefind-ui.css';
-    document.head.appendChild(css);
-
-    var script = document.createElement('script');
-    script.src = '/pagefind/pagefind-ui.js';
-    script.onload = function(){
-      new PagefindUI({ element: '#siteSearch', showSubResults: true, showImages: false });
-    };
-    document.body.appendChild(script);
-  }
-
-  function loadGCSE(){
-    if(gcseLoaded) return;
-    gcseLoaded = true;
-    var script = document.createElement('script');
-    script.src = 'https://cse.google.com/cse.js?cx=' + GOOGLE_CSE_ID;
-    script.async = true;
-    document.body.appendChild(script);
-  }
-
-  tabSite.addEventListener('click', function(){
-    tabSite.classList.add('active'); tabSite.setAttribute('aria-selected','true');
-    tabWeb.classList.remove('active'); tabWeb.setAttribute('aria-selected','false');
-    siteSearch.hidden = false; webSearch.hidden = true;
-  });
-
-  tabWeb.addEventListener('click', function(){
-    tabWeb.classList.add('active'); tabWeb.setAttribute('aria-selected','true');
-    tabSite.classList.remove('active'); tabSite.setAttribute('aria-selected','false');
-    webSearch.hidden = false; siteSearch.hidden = true;
-    loadGCSE();
-  });
-
-  loadPagefind();
 })();
 </script>
 
